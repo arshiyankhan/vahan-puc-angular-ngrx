@@ -1,55 +1,291 @@
-<mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
-    <!-- Changing the icon to Done -->
-    <ng-template matStepperIcon="edit">
-        <mat-icon>check</mat-icon>
-    </ng-template>
+<div class="puc-certificate-main-container" *ngIf="0 == 0">
+    <div class="puc-certificate-heading">
+        <h2 class="heading">Create a PUC Certificate</h2>
+    </div>
+    <div class="create-puc-cerificate-wrapper">
+        <section class="create-puc-certificate">
+            <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
+                <!-- Changing the icon to Done -->
+                <ng-template matStepperIcon="edit">
+                    <mat-icon>check</mat-icon>
+                </ng-template>
+            
+                <!-- User Details -->
+                <mat-step [stepControl]="userDetailsForm">
+                    <form class="create-certificate-form" [formGroup]="userDetailsForm">
+                        <ng-template matStepLabel>User Details</ng-template>
 
-    <!-- User Details -->
-    <mat-step [stepControl]="userDetailsForm">
-        <form [formGroup]="userDetailsForm">
-            <ng-template matStepLabel>User Details</ng-template>
-            <mat-form-field appearance="outline">
-                <mat-label>Mobile Number</mat-label>
-                <input matInput formControlName="mobileNumber">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Vehicle Registration Number</mat-label>
-                <input matInput formControlName="vehicleRegistrationNumber">
-            </mat-form-field>
-            <div>
-                <button mat-flat-button color="primary" matStepperNext>Send OTP</button>
+                        <div class="step-title">
+                            <h3 class="title">Enter User Details</h3>
+                        </div>
+                        
+                        <div class="step-logo">
+                            <img src="../../../assets/icons/user-deatils-logo.svg" class="logo" alt="">
+                        </div>
+
+                        <div class="create-certificate-input-fields">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput formControlName="mobileNumber">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Vehicle Registration Number</mat-label>
+                                <input matInput formControlName="vehicleRegistrationNumber">
+                            </mat-form-field>
+                        </div>
+
+                        <div>
+                            <button mat-flat-button color="primary" class="step-button" matStepperNext>Send OTP</button>
+                        </div>
+                    </form>
+                </mat-step>
+            
+                <!-- Otp Verification -->
+                <mat-step>
+                    <form class="create-certificate-form">
+                        <ng-template matStepLabel>OTP Verification</ng-template>
+
+                        <div class="step-title">
+                            <h3 class="title" [ngClass]="{'dark-font' : isDarkModeActive}">Enter OTP sent to User’s Mobile Number</h3>
+                        </div>
+
+                        <div class="step-logo">
+                            <img src="../../../assets/icons/verify-otp-logo.jpg" class="logo" alt="">
+                        </div>
+                        
+                        <div class="create-certificate-input-fields">
+                            <ng-otp-input class="otp-input" (onInputChange)="onOtpChange($event)" [config]="{length:5}"></ng-otp-input>
+
+                            <div class="resend-otp-container">
+                                <p class="otp-message">Didn’t receive the OTP?</p>
+                                <button class="resend-button">Resend <span class="time">in 00:29</span></button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button mat-flat-button color="primary" class="step-button" type='button' (click)="verifyOtp(stepper)">Verify OTP</button>
+                        </div>
+                    </form>
+                </mat-step>
+            
+                <!-- Photo Capture -->
+                <mat-step>
+                    <form class="create-certificate-form">
+                        <ng-template matStepLabel>Photo Capture</ng-template>
+                        
+                        <div class="step-title">
+                            <h3 class="title">Vehicle Photo with Number Plate</h3>
+                          </div>
+
+                        <div class="step-logo capture-logo">
+                            <img src="../../../assets/icons/capture-photo-logo.svg" class="logo cam-logo" alt="">
+                            <span class="logo-text">Tap here to take photo</span>
+                        </div>
+
+                        <div>
+                            <button mat-flat-button class="step-button" color="primary" matStepperNext type='button'>Proceed</button>
+                        </div>
+                    </form>
+                </mat-step>
+            
+                <!-- Vehicle Exhaust -->
+                <mat-step>
+                    <form class="create-certificate-form">
+                        <ng-template matStepLabel>Vehicle Exhaust</ng-template>
+
+                        <div class="step-title">
+                            <h3 class="title" [ngClass]="{'dark-font' : isDarkModeActive}">Scan Vehicle Exhaust</h3>
+                          </div>
+                        <div class="step-logo">
+                            <img src="../../../assets/icons/vehicle-img.jpg" class="logo" alt="">
+                        </div>
+
+                        <div>
+                            <button mat-flat-button class="step-button" color="primary" matStepperNext type='button'>Start Scan</button>
+                        </div>
+                    </form>
+                </mat-step>
+            </mat-horizontal-stepper>
+              
+        </section>
+        <section class="user-details" [ngClass]="{'dark-background-secondary user-details-dark' : isDarkModeActive}">
+            <div class="user-details-heading">
+                <h4 class="heading">User Details</h4>
             </div>
-        </form>
-    </mat-step>
-
-    <!-- Otp Verification -->
-    <mat-step>
-        <form>
-            <ng-template matStepLabel>OTP Verification</ng-template>
-            <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:5}"></ng-otp-input>
-            <div>
-                <button mat-flat-button color="primary" type='button' (click)="verifyOtp(stepper)">Verify OTP</button>
+            <div class="user-details-container">
+                <form [formGroup]="userDetailsRightForm">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Registration Number</mat-label>
+                    <input type="email" matInput formControlName="regNumber">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Registration Owner</mat-label>
+                    <input type="email" matInput formControlName="regOwner">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Owner Phone Number</mat-label>
+                    <input type="email" matInput formControlName="ownerPhoneNumber"> <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Maker's Class
+                    </mat-label>
+                    <input type="email" matInput formControlName="markersClass">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Vehicle Class
+                    </mat-label>
+                    <input type="email" matInput formControlName="vehicleClass">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Month, Year of Mfg.
+                    </mat-label>
+                    <input type="email" matInput formControlName="monthYearOfMfg">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Fuel Used
+                    </mat-label>
+                    <input type="email" matInput formControlName="fuelUsed">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Chasis Number</mat-label>
+                    <input type="email" matInput formControlName="chasisNumber">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Engine Number</mat-label>
+                    <input type="email" matInput formControlName="engineNumber">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Date of Registration
+                    </mat-label>
+                    <input type="email" matInput formControlName="dateOfReg">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Engine Stroke
+                    </mat-label>
+                    <input type="email" matInput formControlName="engineStroke">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Emission Norms
+                    </mat-label>
+                    <input type="email" matInput formControlName="emissionNorms">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Odometer Reading
+                    </mat-label>
+                    <input type="email" matInput formControlName="odometerReading">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Insurance Cert. No.
+                    </mat-label>
+                    <input type="email" matInput formControlName="insuranceCertNumber">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Insurance Company
+                    </mat-label>
+                    <input type="email" matInput formControlName="insuranceCompany">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Insurance Validity</mat-label>
+                    <input type="email" matInput formControlName="insuranceValidity">
+                    <mat-error>
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error>
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </form>
             </div>
-        </form>
-    </mat-step>
-
-    <!-- Photo Capture -->
-    <mat-step>
-        <form>
-            <ng-template matStepLabel>Photo Capture</ng-template>
-            <div>
-                <button mat-flat-button color="primary" matStepperNext type='button'>Proceed</button>
-            </div>
-        </form>
-    </mat-step>
-
-    <!-- Vehicle Exhaust -->
-    <mat-step>
-        <form>
-            <ng-template matStepLabel>Vehicle Exhaust</ng-template>
-        </form>
-        <div>
-            <button mat-flat-button color="primary" matStepperNext type='button'>Start Scan</button>
-        </div>
-    </mat-step>
-</mat-horizontal-stepper>
+            
+        </section>
+    </div>
+</div>
