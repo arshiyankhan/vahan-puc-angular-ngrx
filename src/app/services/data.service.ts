@@ -42,4 +42,65 @@ export class DataService {
       )
     });
   }
+
+  startScan(vehicleDetails:VehicleDetails, phoneNumber:String, vehicleImage:String): Promise<HttpResponse<any>>{
+    
+    let body = {
+      "phoneNumber": "2213131121",
+      "vehicle": {
+      "chasisNumber": vehicleDetails.chasisNumber,
+      "emissionNorms": vehicleDetails.emissionNorms,
+      "engineNumber": vehicleDetails.engineNumber,
+      "fuelType": vehicleDetails.fuelType,
+      "id": vehicleDetails.id,
+      "insurance": vehicleDetails.insurance,
+      "model": vehicleDetails.model,
+      "ownerAddress": vehicleDetails.ownerAddress,
+      "ownerContact": vehicleDetails.ownerContact,
+      "ownerEmail": vehicleDetails.ownerEmail,
+      "ownerName": vehicleDetails.ownerName,
+      "pucc": vehicleDetails.pucc,
+      "regAuthority": vehicleDetails.regAuthority,
+      "regDate": vehicleDetails.regDate,
+      "regNumber": vehicleDetails.regNumber,
+      "stolen": vehicleDetails.stolen,
+      "vehicleClass": vehicleDetails.vehicleClass,
+      "vehicleMake": vehicleDetails.vehicleMake,
+      },
+      "vehicleImage": vehicleImage
+    }
+  
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        `${environment.baseUrl}/dealer/readings-cert`,
+        body,
+        { observe: "response" as 'body' }
+      ).subscribe(
+        (response: any) => resolve(response),
+        (error: any) => reject(error)
+      )
+    });
+  }
+}
+
+
+export interface VehicleDetails{
+    chasisNumber: string,
+    emissionNorms: string,
+    engineNumber: string,
+    fuelType: string,
+    id: number,
+    insurance: string,
+    model: string,
+    ownerAddress: string,
+    ownerContact: string,
+    ownerEmail: string,
+    ownerName: string,
+    pucc: string,
+    regAuthority: string,
+    regDate: string,
+    regNumber: string,
+    stolen: null,
+    vehicleClass: string,
+    vehicleMake: string
 }

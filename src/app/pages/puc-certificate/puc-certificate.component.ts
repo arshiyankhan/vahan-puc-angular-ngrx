@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
-import { DataService } from 'src/app/services/data.service';
+import { DataService, VehicleDetails } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-puc-certificate',
@@ -42,7 +42,7 @@ export class PucCertificateComponent implements OnInit {
     insuranceValidity: ['', Validators.required],
   });
 
-  isWebcamEnabled = false;
+  isWebcamEnabled = true;
   otp: string = ""
   webcamImage?: WebcamImage;
 
@@ -54,6 +54,19 @@ export class PucCertificateComponent implements OnInit {
     this.otp = otp
   }
 
+  //camera setup
+  public triggerSnapshot(): void {
+    this.trigger.next();
+  }
+  public get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
+  }
+  public handleImage(webcamImage: WebcamImage): void {
+    this.isWebcamEnabled = false;
+    this.webcamImage = webcamImage;
+  }
+
+  //api calls
   async sendOtp(stepper:MatStepper){
     if (!this.userDetailsForm.valid) return;
 
@@ -62,24 +75,6 @@ export class PucCertificateComponent implements OnInit {
 
     let data: HttpResponse<any> = await this.dataService.sendOtp(phoneNumber!,vehicleRegNumber!)
     stepper.next();
-  }
-
-  changeValueExample() {
-    
-  }
-
-  public triggerSnapshot(): void {
-    this.trigger.next();
-  }
-
-  public get triggerObservable(): Observable<void> {
-    return this.trigger.asObservable();
-  }
-
-  public handleImage(webcamImage: WebcamImage): void {
-    console.info('received webcam image', webcamImage);
-    this.isWebcamEnabled = false;
-    this.webcamImage = webcamImage;
   }
 
   async verifyOtp(stepper: MatStepper) {
@@ -115,6 +110,37 @@ export class PucCertificateComponent implements OnInit {
     this.userDetailsRightForm.controls['emissionNorms'].disable()
 
     stepper.next();
+  }
+
+  async startScan(){
+    if (!this.userDetailsForm.valid) return;
+
+    let vechicleImage = this.webcamImage?.imageAsDataUrl??""
+    let phoneNumber = this.userDetailsForm.value.phoneNumber;
+
+    let vehicleDetails: VehicleDetails = {
+      chasisNumber: this.userDetailsRightForm.controls.chasisNumber.value??"",
+      emissionNorms: this.userDetailsRightForm.controls.emissionNorms.value??"",
+      engineNumber: this.userDetailsRightForm.controls.engineNumber.value??"",
+      fuelType: this.userDetailsRightForm.controls.fuelUsed.value??"",
+      id: 151,
+      insurance: this.userDetailsRightForm.controls.insuranceValidity.value??"",
+      model: "caqxe xni zfqbm",
+      ownerAddress: "ukn uiiq jcccwh bskdgt 812152",
+      ownerContact: this.userDetailsRightForm.controls.ownerPhoneNumber.value??"",
+      ownerEmail: "yadtj04@mbtmi.com",
+      ownerName: this.userDetailsRightForm.controls.regOwner.value??"",
+      pucc: "2021-06-29",
+      regAuthority: "ddvniu qpmhmopdbi szvd ochgp",
+      regDate: this.userDetailsRightForm.controls.dateOfReg.value??"",
+      regNumber: this.userDetailsRightForm.controls.regNumber.value??"",
+      stolen: null,
+      vehicleClass: this.userDetailsRightForm.controls.vehicleClass.value??"",
+      vehicleMake: "mcxha oetnrekp"
+    }
+    
+    let data: HttpResponse<any> = await this.dataService.startScan(vehicleDetails, phoneNumber!, vechicleImage)
+
   }
 
 }
