@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://9883-103-155-213-39.in.ngrok.io',
+  baseUrl: 'http://localhost:8080',
 };
 
 /*
