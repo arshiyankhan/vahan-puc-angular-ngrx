@@ -10,6 +10,7 @@ import { PagesRoutingModule } from "./pages-routing.module";
 import { PagesComponent } from "./pages.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { WebcamModule } from "ngx-webcam";
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
         MaterialModule,
         ReactiveFormsModule,
         NgOtpInputModule,
+        WebcamModule,
     ]
   })
   export class PagesModule { }

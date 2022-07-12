@@ -56,10 +56,10 @@
                         <div class="create-certificate-input-fields">
                             <ng-otp-input class="otp-input" (onInputChange)="onOtpChange($event)" [config]="{length:5}"></ng-otp-input>
 
-                            <div class="resend-otp-container">
+                            <!-- <div class="resend-otp-container">
                                 <p class="otp-message">Didn’t receive the OTP?</p>
                                 <button class="resend-button">Resend <span class="time">in 00:29</span></button>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div>
@@ -76,14 +76,39 @@
                         <div class="step-title">
                             <h3 class="title">Vehicle Photo with Number Plate</h3>
                           </div>
+                        
 
-                        <div class="step-logo capture-logo">
-                            <img src="../../../assets/icons/capture-photo-logo.svg" class="logo cam-logo" alt="">
-                            <span class="logo-text">Tap here to take photo</span>
+                        <div *ngIf="!isWebcamEnabled; else elseBlock">
+                            <button *ngIf="!webcamImage" type="button" class="step-logo capture-logo" (click)="isWebcamEnabled = true">
+                                <img src="../../../assets/icons/capture-photo-logo.svg" class="logo cam-logo" alt="">
+                                <span class="logo-text">Tap here to take photo</span>
+                            </button>
+                        </div>
+
+                        <ng-template #elseBlock>
+                            <div class="step-logo capture-logo">
+                                <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+                            </div>
+                            <button mat-fab color="primary" (click)="triggerSnapshot()" type="button">
+                                <mat-icon>camera</mat-icon>
+                            </button>
+                        </ng-template>
+
+                        <div class="step-logo capture-logo" *ngIf="webcamImage">
+                            <img [src]="webcamImage.imageAsDataUrl" class="logo cam-logo" alt="" style="width: 100%;">
                         </div>
 
                         <div>
-                            <button mat-flat-button class="step-button" color="primary" matStepperNext type='button'>Proceed</button>
+                            <button
+                                mat-flat-button
+                                class="step-button"
+                                color="primary"
+                                matStepperNext
+                                type='button'
+                                *ngIf="webcamImage"
+                            >
+                                Proceed
+                            </button>
                         </div>
                     </form>
                 </mat-step>

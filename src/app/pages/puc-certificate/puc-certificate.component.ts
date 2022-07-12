@@ -2,6 +2,8 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { WebcamImage } from 'ngx-webcam';
+import { Observable, Subject } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -40,7 +42,11 @@ export class PucCertificateComponent implements OnInit {
     insuranceValidity: ['', Validators.required],
   });
 
+  isWebcamEnabled = false;
   otp: string = ""
+  webcamImage?: WebcamImage;
+
+  private trigger: Subject<void> = new Subject<void>();
 
   ngOnInit(): void {}
 
@@ -63,7 +69,21 @@ export class PucCertificateComponent implements OnInit {
       regNumber: 'TN-12-12-12',
     })
   }
-  
+
+  public triggerSnapshot(): void {
+    this.trigger.next();
+  }
+
+  public get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
+  }
+
+  public handleImage(webcamImage: WebcamImage): void {
+    console.info('received webcam image', webcamImage);
+    this.isWebcamEnabled = false;
+    this.webcamImage = webcamImage;
+  }
+
   async verifyOtp(stepper: MatStepper) {
     if (!this.userDetailsForm.valid) return;
 
