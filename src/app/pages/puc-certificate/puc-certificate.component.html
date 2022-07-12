@@ -35,7 +35,7 @@
                         </div>
 
                         <div>
-                            <button mat-flat-button color="primary" class="step-button" matStepperNext>Send OTP</button>
+                            <button mat-flat-button color="primary" class="step-button" (click)="sendOtp(stepper)">Send OTP</button>
                         </div>
                     </form>
                 </mat-step>
@@ -54,7 +54,7 @@
                         </div>
                         
                         <div class="create-certificate-input-fields">
-                            <ng-otp-input class="otp-input" (onInputChange)="onOtpChange($event)" [config]="{length:5}"></ng-otp-input>
+                            <ng-otp-input class="otp-input" (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
 
                             <!-- <div class="resend-otp-container">
                                 <p class="otp-message">Didn’t receive the OTP?</p>
