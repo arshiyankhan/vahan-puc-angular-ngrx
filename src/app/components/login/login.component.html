@@ -1,15 +1,15 @@
 <div class="center login-card">
-<h1 style="text-align: center;">Login</h1>
-<form [formGroup]="formGroup">
-    <mat-form-field appearance="outline">
-    <mat-label>Username</mat-label>
-    <input formControlName="username" matInput placeholder="...">
-    </mat-form-field>
+    <h1 style="text-align: center;">Login</h1>
+    <form [formGroup]="formGroup">
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input formControlName="username" matInput placeholder="...">
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-    <mat-label>Password</mat-label>
-    <input formControlName="password" type="password" matInput placeholder="...">
-    </mat-form-field>
-</form>
-<button mat-raised-button color="primary" (click)="onLogin()">Login</button>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" type="password" matInput placeholder="...">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
 </div>

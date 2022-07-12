@@ -8,6 +8,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -23,6 +26,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatStepperModule,
   ],
   exports: [
     CommonModule,
@@ -34,6 +40,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatStepperModule,
   ]
 })
 export class MaterialModule { }

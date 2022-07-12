@@ -1,0 +1,55 @@
+<mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
+    <!-- Changing the icon to Done -->
+    <ng-template matStepperIcon="edit">
+        <mat-icon>check</mat-icon>
+    </ng-template>
+
+    <!-- User Details -->
+    <mat-step [stepControl]="userDetailsForm">
+        <form [formGroup]="userDetailsForm">
+            <ng-template matStepLabel>User Details</ng-template>
+            <mat-form-field appearance="outline">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput formControlName="mobileNumber">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Vehicle Registration Number</mat-label>
+                <input matInput formControlName="vehicleRegistrationNumber">
+            </mat-form-field>
+            <div>
+                <button mat-flat-button color="primary" matStepperNext>Send OTP</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Otp Verification -->
+    <mat-step>
+        <form>
+            <ng-template matStepLabel>OTP Verification</ng-template>
+            <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:5}"></ng-otp-input>
+            <div>
+                <button mat-flat-button color="primary" type='button' (click)="verifyOtp(stepper)">Verify OTP</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Photo Capture -->
+    <mat-step>
+        <form>
+            <ng-template matStepLabel>Photo Capture</ng-template>
+            <div>
+                <button mat-flat-button color="primary" matStepperNext type='button'>Proceed</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Vehicle Exhaust -->
+    <mat-step>
+        <form>
+            <ng-template matStepLabel>Vehicle Exhaust</ng-template>
+        </form>
+        <div>
+            <button mat-flat-button color="primary" matStepperNext type='button'>Start Scan</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

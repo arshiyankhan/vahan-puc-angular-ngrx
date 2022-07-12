@@ -1,0 +1,32 @@
+mat-nav-list {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mat-list-item {
+    height: 60px !important;
+    margin-bottom: 5px;
+    border-radius: 20px;
+}
+
+mat-icon {
+    margin-right: 15px;
+}
+
+.list-item-active {
+    background-color: #E3E3EF;
+    color: #12178C;
+}
+
+.header {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+.header-text {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+}
