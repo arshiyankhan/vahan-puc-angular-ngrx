@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { PucCertificateComponent } from './components/puc-certificate/puc-certificate.component';
+import { PucCertificateComponent } from './pages/puc-certificate/puc-certificate.component';
+import { PagesComponent } from './pages/pages.component';
 
 const routes: Routes = [
   {
@@ -9,8 +10,19 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'puc-certificate',
-    component: PucCertificateComponent,
+    path: '',
+    component: PagesComponent,
+    // canActivateChild: [AuthGuard],
+    children: [{
+      path: '',
+      //canActivate: [LoginActiveGuard],
+      // pathMatch: 'full',
+      loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
+      data: {
+        allowedRoles: []
+      }
+    }
+   ]
   }
 ];
 
