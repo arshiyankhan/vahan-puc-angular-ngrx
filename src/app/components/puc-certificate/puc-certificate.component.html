@@ -10,14 +10,14 @@
             <ng-template matStepLabel>User Details</ng-template>
             <mat-form-field appearance="outline">
                 <mat-label>Mobile Number</mat-label>
-                <input matInput formControlName="mobileNumber">
+                <input matInput formControlName="phoneNumber">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Vehicle Registration Number</mat-label>
-                <input matInput formControlName="vehicleRegistrationNumber">
+                <input matInput formControlName="vehicleRegNumber">
             </mat-form-field>
             <div>
-                <button mat-flat-button color="primary" matStepperNext>Send OTP</button>
+                <button mat-flat-button color="primary" (click)="sendOtp(stepper)">Send OTP</button>
             </div>
         </form>
     </mat-step>
@@ -26,7 +26,7 @@
     <mat-step>
         <form>
             <ng-template matStepLabel>OTP Verification</ng-template>
-            <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:5}"></ng-otp-input>
+            <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
             <div>
                 <button mat-flat-button color="primary" type='button' (click)="verifyOtp(stepper)">Verify OTP</button>
             </div>

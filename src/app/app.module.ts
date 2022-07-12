@@ -8,11 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from './modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PucCertificateComponent } from './components/puc-certificate/puc-certificate.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { HeaderComponent } from './components/header/header.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,13 @@ import { HeaderComponent } from './components/header/header.component';
     StoreModule.forRoot({}, {}),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
