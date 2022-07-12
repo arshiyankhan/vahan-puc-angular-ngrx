@@ -12,37 +12,29 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatStepperModule} from '@angular/material/stepper';
 
-
+const mat = [
+  CommonModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSnackBarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatStepperModule,
+]
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatStepperModule,
+    ...mat
   ],
   exports: [
     CommonModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatStepperModule,
+    ...mat
   ]
 })
 export class MaterialModule { }
