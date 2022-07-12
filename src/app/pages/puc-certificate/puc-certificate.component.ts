@@ -59,9 +59,7 @@ export class PucCertificateComponent implements OnInit {
   }
 
   changeValueExample() {
-    this.userDetailsRightForm.patchValue({
-      regNumber: 'TN-12-12-12',
-    })
+    
   }
   
   async verifyOtp(stepper: MatStepper) {
@@ -71,8 +69,31 @@ export class PucCertificateComponent implements OnInit {
     let vehicleRegNumber = this.userDetailsForm.value.vehicleRegNumber;
 
     let data: HttpResponse<any> = await this.dataService.verifyOtp(this.otp!,phoneNumber!,vehicleRegNumber!)
-    console.log(data.body.data);
-    
+
+    this.userDetailsRightForm.patchValue({
+      regNumber: data.body.data['regNumber'],
+      chasisNumber: data.body.data['chasisNumber'],
+      engineNumber: data.body.data['engineNumber'],
+      fuelUsed: data.body.data['fuelType'],
+      ownerPhoneNumber: data.body.data['ownerContact'],
+      regOwner: data.body.data['ownerName'],
+      insuranceValidity: data.body.data['insurance'],
+      dateOfReg: data.body.data['regDate'],
+      vehicleClass: data.body.data['vehicleClass'],
+      emissionNorms: data.body.data['emissionNorms']
+    })
+
+    this.userDetailsRightForm.controls['regNumber'].disable()
+    this.userDetailsRightForm.controls['chasisNumber'].disable()
+    this.userDetailsRightForm.controls['engineNumber'].disable()
+    this.userDetailsRightForm.controls['fuelUsed'].disable()
+    this.userDetailsRightForm.controls['ownerPhoneNumber'].disable()
+    this.userDetailsRightForm.controls['regOwner'].disable()
+    this.userDetailsRightForm.controls['insuranceValidity'].disable()
+    this.userDetailsRightForm.controls['dateOfReg'].disable()
+    this.userDetailsRightForm.controls['vehicleClass'].disable()
+    this.userDetailsRightForm.controls['emissionNorms'].disable()
+
     stepper.next();
   }
 
