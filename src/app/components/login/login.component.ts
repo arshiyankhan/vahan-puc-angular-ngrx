@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem("token")) {
+      // TODO: Create a dashboard route and redirect to it
       // this.router.navigate(['/dashboard']);
     }
   }
@@ -37,5 +38,8 @@ export class LoginComponent implements OnInit {
     let data: HttpResponse<any> = await this.authService.login(username, password)
     const token = data.headers.get('Authorization')?.replace('Bearer ', '')??"";
     localStorage.setItem("token", token);
+    
+    // TODO: Create a dashboard route and redirect to it
+    // this.router.navigate(['/dashboard']);
   }
 }
