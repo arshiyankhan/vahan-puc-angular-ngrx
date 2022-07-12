@@ -46,7 +46,7 @@
                         <ng-template matStepLabel>OTP Verification</ng-template>
 
                         <div class="step-title">
-                            <h3 class="title" [ngClass]="{'dark-font' : isDarkModeActive}">Enter OTP sent to User’s Mobile Number</h3>
+                            <h3 class="title">Enter OTP sent to User’s Mobile Number</h3>
                         </div>
 
                         <div class="step-logo">
@@ -119,7 +119,7 @@
                         <ng-template matStepLabel>Vehicle Exhaust</ng-template>
 
                         <div class="step-title">
-                            <h3 class="title" [ngClass]="{'dark-font' : isDarkModeActive}">Scan Vehicle Exhaust</h3>
+                            <h3 class="title">Scan Vehicle Exhaust</h3>
                           </div>
                         <div class="step-logo">
                             <img src="../../../assets/icons/vehicle-img.jpg" class="logo" alt="">
@@ -133,180 +133,75 @@
             </mat-horizontal-stepper>
               
         </section>
-        <section class="user-details" [ngClass]="{'dark-background-secondary user-details-dark' : isDarkModeActive}">
+        <section class="user-details">
             <div class="user-details-heading">
                 <h4 class="heading">User Details</h4>
             </div>
             <div class="user-details-container">
                 <form [formGroup]="userDetailsRightForm">
-                  <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-form-field appearance="outline">
                     <mat-label>Registration Number</mat-label>
-                    <input type="email" matInput formControlName="regNumber">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                    <input matInput formControlName="regNumber">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-form-field appearance="outline">
                     <mat-label>Registration Owner</mat-label>
-                    <input type="email" matInput formControlName="regOwner">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                    <input matInput formControlName="regOwner">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-form-field appearance="outline">
                     <mat-label>Owner Phone Number</mat-label>
-                    <input type="email" matInput formControlName="ownerPhoneNumber"> <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                    <input matInput formControlName="ownerPhoneNumber">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Maker's Class
-                    </mat-label>
-                    <input type="email" matInput formControlName="markersClass">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Maker's Class</mat-label>
+                    <input matInput formControlName="markersClass">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Vehicle Class
-                    </mat-label>
-                    <input type="email" matInput formControlName="vehicleClass">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Vehicle Class</mat-label>
+                    <input matInput formControlName="vehicleClass">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Month, Year of Mfg.
-                    </mat-label>
-                    <input type="email" matInput formControlName="monthYearOfMfg">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Month, Year of Mfg.</mat-label>
+                    <input matInput formControlName="monthYearOfMfg">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Fuel Used
-                    </mat-label>
-                    <input type="email" matInput formControlName="fuelUsed">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Fuel Used</mat-label>
+                    <input matInput formControlName="fuelUsed">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-form-field appearance="outline">
                     <mat-label>Chasis Number</mat-label>
-                    <input type="email" matInput formControlName="chasisNumber">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                    <input matInput formControlName="chasisNumber">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-form-field appearance="outline">
                     <mat-label>Engine Number</mat-label>
-                    <input type="email" matInput formControlName="engineNumber">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                    <input matInput formControlName="engineNumber">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Date of Registration
-                    </mat-label>
-                    <input type="email" matInput formControlName="dateOfReg">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Date of Registration</mat-label>
+                    <input matInput formControlName="dateOfReg">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Engine Stroke
-                    </mat-label>
-                    <input type="email" matInput formControlName="engineStroke">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Engine Stroke</mat-label>
+                    <input matInput formControlName="engineStroke">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Emission Norms
-                    </mat-label>
-                    <input type="email" matInput formControlName="emissionNorms">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Emission Norms</mat-label>
+                    <input matInput formControlName="emissionNorms">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Odometer Reading
-                    </mat-label>
-                    <input type="email" matInput formControlName="odometerReading">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Odometer Reading</mat-label>
+                    <input matInput formControlName="odometerReading">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Insurance Cert. No.
-                    </mat-label>
-                    <input type="email" matInput formControlName="insuranceCertNumber">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Insurance Cert. No.</mat-label>
+                    <input matInput formControlName="insuranceCertNumber">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Insurance Company
-                    </mat-label>
-                    <input type="email" matInput formControlName="insuranceCompany">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Insurance Company</mat-label>
+                    <input matInput formControlName="insuranceCompany">
                   </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-form-field appearance="outline">
                     <mat-label>Insurance Validity</mat-label>
-                    <input type="email" matInput formControlName="insuranceValidity">
-                    <mat-error>
-                      Please enter a valid email address
-                    </mat-error>
-                    <mat-error>
-                      Email is <strong>required</strong>
-                    </mat-error>
+                    <input matInput formControlName="insuranceValidity">
                   </mat-form-field>
                 </form>
             </div>

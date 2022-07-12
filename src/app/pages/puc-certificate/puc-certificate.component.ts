@@ -12,7 +12,6 @@ import { DataService, VehicleDetails } from 'src/app/services/data.service';
   styleUrls: ['./puc-certificate.component.scss']
 })
 export class PucCertificateComponent implements OnInit {
-  isDarkModeActive =  false;
   constructor(
     private _formBuilder: FormBuilder,
     private dataService : DataService
@@ -24,22 +23,22 @@ export class PucCertificateComponent implements OnInit {
   });
 
   userDetailsRightForm = this._formBuilder.group({
-    regNumber: ['', Validators.required],
-    regOwner: ['', Validators.required],
-    ownerPhoneNumber: ['', Validators.required],
-    markersClass: ['', Validators.required],
-    vehicleClass: ['', Validators.required],
-    monthYearOfMfg: ['', Validators.required],
-    fuelUsed: ['', Validators.required],
-    chasisNumber: ['', Validators.required],
-    engineNumber: ['', Validators.required],
-    dateOfReg: ['', Validators.required],
-    engineStroke: ['', Validators.required],
-    emissionNorms: ['', Validators.required],
-    odometerReading: ['', Validators.required],
-    insuranceCertNumber: ['', Validators.required],
-    insuranceCompany: ['', Validators.required],
-    insuranceValidity: ['', Validators.required],
+    regNumber: [''],
+    regOwner: [''],
+    ownerPhoneNumber: [''],
+    markersClass: [''],
+    vehicleClass: [''],
+    monthYearOfMfg: [''],
+    fuelUsed: [''],
+    chasisNumber: [''],
+    engineNumber: [''],
+    dateOfReg: [''],
+    engineStroke: [''],
+    emissionNorms: [''],
+    odometerReading: [''],
+    insuranceCertNumber: [''],
+    insuranceCompany: [''],
+    insuranceValidity: [''],
   });
 
   isWebcamEnabled = true;
